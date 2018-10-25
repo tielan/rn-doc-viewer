@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:elevation="6.0dp"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/ic_arrow_back_black_36dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"/>
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="68dp"
+            android:paddingRight="68dp"
+            android:textSize="16sp"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+    <com.chinacreator.fileview.view.SuperFileView
+        android:id="@+id/fileview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.chinacreator.fileview.view.SuperFileView>
+
+</LinearLayout>
