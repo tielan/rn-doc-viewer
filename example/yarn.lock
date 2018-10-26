@@ -4571,6 +4571,10 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
 
+rn-doc-viewer@1.0.1:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/rn-doc-viewer/-/rn-doc-viewer-1.0.0.tgz#9322a85a072c9d27c85ff3854f2cb59d96766ff9"
+
 run-async@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.3.0.tgz#0371ab4ae0bdd720d4166d7dfda64ff7a445a6c0"
