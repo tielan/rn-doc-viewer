@@ -62,8 +62,7 @@ RCT_EXPORT_METHOD(openDoc:(NSArray *)array callback:(RCTResponseSenderBlock)call
         //Custom Filename
         NSString *fileName = @"";
         if([fileNameOptional length] > 0){
-            NSString* fileExt = [fileNameExported pathExtension];
-            fileName = [NSString stringWithFormat:@"%@%c%@", fileNameOptional , '.', fileExt];
+            fileName = [NSString stringWithFormat:@"%@", fileNameOptional];
         }else{
             fileName = [NSString stringWithFormat:@"%@", fileNameExported];
         }
@@ -77,7 +76,7 @@ RCT_EXPORT_METHOD(openDoc:(NSArray *)array callback:(RCTResponseSenderBlock)call
             NSData* dat = [NSData dataWithContentsOfURL:url];
             if (dat == nil) {
                 if (callback) {
-                    callback(@[[NSNull null], @"Doc Url not found"]);
+                    callback(@[[NSNull null], @"-1"]);
                 }
                 return;
             }
@@ -86,7 +85,6 @@ RCT_EXPORT_METHOD(openDoc:(NSArray *)array callback:(RCTResponseSenderBlock)call
             
         }
         weakSelf.fileUrl = tmpFileUrl;
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             QLPreviewController* cntr = [[QLPreviewController alloc] init];
             cntr.delegate = weakSelf;
@@ -172,14 +170,7 @@ RCT_EXPORT_METHOD(openDoc:(NSArray *)array callback:(RCTResponseSenderBlock)call
  totalBytesWritten:(int64_t)totalBytesWritten
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     dispatch_sync(dispatch_get_main_queue(), ^{
-        //float progressValue = totalBytesWritten/totalBytesExpectedToWrite;
         prog = (float)totalBytesWritten/totalBytesExpectedToWrite;
-        //NSLog(@"downloaded %d%%", (int)(100.0*prog));
-        NSNumber *progress = @([@(totalBytesWritten) floatValue]/[@(totalBytesExpectedToWrite) floatValue] * 100.0);
-        [self sendEventWithName:@"RNDownloaderProgress" body:@{ @"totalBytesWritten": @(totalBytesWritten),
-                                                                @"totalBytesExpectedToWrite": @(totalBytesExpectedToWrite),
-                                                                @"progress": progress }];
-
     });
 }
 

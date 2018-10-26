@@ -204,18 +204,11 @@ public class SuperFileManager {
     private File downloadFile(String url, File pathFile,LoadFileCallback callback) {
 
         try {
-            CookieManager cookieManager = CookieManager.getInstance();
-            String auth = null;
-            if (cookieManager.getCookie(url) != null) {
-                auth = cookieManager.getCookie(url).toString();
-            }
 
             URL url2 = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) url2.openConnection();
             int fileLength = conn.getContentLength();
-            if (auth != null) {
-                conn.setRequestProperty("Cookie", auth);
-            }
+
             InputStream reader = conn.getInputStream();
             File f = File.createTempFile("tem", "." + pathFile.getName().substring(pathFile.getName().lastIndexOf("1")+1),
                     pathFile.getParentFile());
