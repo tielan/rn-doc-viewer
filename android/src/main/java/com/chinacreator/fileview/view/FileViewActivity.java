@@ -38,8 +38,12 @@ public class FileViewActivity extends Activity {
         String url = getIntent().getStringExtra(URL_STR);
         String fileName = getIntent().getStringExtra(FileName_STR);
         boolean cache = getIntent().getBooleanExtra(Cache_STR, true);
+        if(isPicture(fileName != null ? fileName : url)){
+            photoView.setVisibility(View.VISIBLE);
+        }else{
+            photoView.setVisibility(View.GONE);
+        }
         SuperFileManager.getInstance().loadFile(url,null,null,fileName,cache,new SuperFileManager.LoadFileCallback(){
-
             @Override
             public void onLoadSuccess(String fileName) {
                 showFile(fileName);
@@ -48,7 +52,6 @@ public class FileViewActivity extends Activity {
             public void onLoadError(String message) {
 
             }
-
             @Override
             public void downloadProgress(long currentSize, long totalSize) {
 

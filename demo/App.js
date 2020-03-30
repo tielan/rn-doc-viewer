@@ -23,10 +23,17 @@ const App = () => {
 
             })
           }}></Button>
-           <Button
+        <Button
           title="打开图片"
           onPress={() => {
             DocViewer.openDoc([{ url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2567670815,24101428&fm=26&gp=0.jpg' }], () => {
+
+            })
+          }}></Button>
+        <Button
+          title="打开vide"
+          onPress={() => {
+            DocViewer.openVideo({ url: 'http://172.16.17.64:8088/files/VID_20200330_224131.mp4' }, () => {
 
             })
           }}></Button>
