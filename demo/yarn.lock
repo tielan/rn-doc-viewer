@@ -5637,6 +5637,11 @@ rimraf@~2.2.6:
   resolved "http://npm.c2cloud.cn/rimraf/download/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
+rn-doc-viewer@^1.0.2:
+  version "1.0.2"
+  resolved "http://npm.c2cloud.cn/rn-doc-viewer/download/rn-doc-viewer-1.0.2.tgz#005762bb9d6ad4c92b5f878ec35dcd6fe2829b8f"
+  integrity sha1-AFdiu51q1MkrX4eOw13Nb+KCm48=
+
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "http://npm.c2cloud.cn/rsvp/download/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
