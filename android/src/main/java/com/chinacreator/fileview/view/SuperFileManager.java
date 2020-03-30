@@ -91,7 +91,7 @@ public class SuperFileManager {
 
 
 
-    public interface LoadFileCallback{
+    public  interface LoadFileCallback{
         /**
          * 文件存在 返回绝对路径 如果文件不存在 返回null
          * @param path
