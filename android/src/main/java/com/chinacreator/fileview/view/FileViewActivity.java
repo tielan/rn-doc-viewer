@@ -2,12 +2,12 @@ package com.chinacreator.fileview.view;
 
 import android.app.Activity;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 
@@ -24,9 +24,11 @@ public class FileViewActivity extends Activity {
     public static final String URL_STR = "URL_STR";
     public static final String FileName_STR = "FileName_STR";
     public static final String Cache_STR = "Cache_STR";
-
+    public static final String File_Type = "File_Type";
+    private View lyBg;
     private PDFView pdfView;
     private PhotoView photoView;
+    public ProgressBar loadingProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,18 +36,26 @@ public class FileViewActivity extends Activity {
         setContentView(R.layout.fileview_activity);
         pdfView =  findViewById(R.id.pdfView);
         photoView = findViewById(R.id.photoView);
-
+        lyBg = findViewById(R.id.ly_bg);
+        loadingProgressBar = findViewById(R.id.loading);
         String url = getIntent().getStringExtra(URL_STR);
         String fileName = getIntent().getStringExtra(FileName_STR);
+        int fileType = getIntent().getIntExtra("File_Type",0);//0 image 1 pdf
         boolean cache = getIntent().getBooleanExtra(Cache_STR, true);
-        if(isPicture(fileName != null ? fileName : url)){
-            photoView.setVisibility(View.VISIBLE);
+        photoView.setVisibility(View.GONE);
+        photoView.setVisibility(View.GONE);
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        if(fileType == 1){
+            lyBg.setBackgroundColor(Color.WHITE);
+            loadingProgressBar.setIndeterminateDrawable(getResources().getDrawable(R.drawable.jz_loading_dark));
         }else{
-            photoView.setVisibility(View.GONE);
+            lyBg.setBackgroundColor(Color.BLACK);
         }
+        SuperFileManager.getInstance().init(this);
         SuperFileManager.getInstance().loadFile(url,null,null,fileName,cache,new SuperFileManager.LoadFileCallback(){
             @Override
             public void onLoadSuccess(String fileName) {
+                loadingProgressBar.setVisibility(View.GONE);
                 showFile(fileName);
             }
             @Override
@@ -55,6 +65,12 @@ public class FileViewActivity extends Activity {
             @Override
             public void downloadProgress(long currentSize, long totalSize) {
 
+            }
+        });
+        lyBg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         photoView.setOnViewTapListener(new OnViewTapListener() {
@@ -80,7 +96,7 @@ public class FileViewActivity extends Activity {
                     photoView.setVisibility(View.VISIBLE);
                     photoView.setImageURI(Uri.fromFile(file));
                 }else{
-                    photoView.setVisibility(View.GONE);
+                    pdfView.setVisibility(View.VISIBLE);
                     pdfView.fromFile(file).onTap(onTapListener).load();
                 }
             }

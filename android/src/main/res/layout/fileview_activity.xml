@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
    <FrameLayout
+       android:id="@+id/ly_bg"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
        <com.github.barteksc.pdfviewer.PDFView
            android:id="@+id/pdfView"
            android:layout_width="match_parent"
+           android:visibility="gone"
            android:layout_height="match_parent"/>
        <com.chinacreator.fileview.photoview.PhotoView
            android:id="@+id/photoView"
            android:visibility="gone"
-           android:background="#000000"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            ></com.chinacreator.fileview.photoview.PhotoView>
    </FrameLayout>
-
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="@dimen/jz_start_button_w_h_normal"
+        android:layout_height="@dimen/jz_start_button_w_h_normal"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminateDrawable="@drawable/jz_loading"
+        android:visibility="invisible" />
+</RelativeLayout>

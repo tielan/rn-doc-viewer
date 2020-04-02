@@ -19,21 +19,21 @@ const App = () => {
         <Button
           title="打开pdf"
           onPress={() => {
-            DocViewer.openDoc([{ url: 'http://appapidemo.egp.c2cloud.cn/a.pdf' }], () => {
+            DocViewer.openDoc({ url: 'http://appapidemo.egp.c2cloud.cn/a.pdf' }, () => {
 
             })
           }}></Button>
         <Button
           title="打开图片"
           onPress={() => {
-            DocViewer.openDoc([{ url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2567670815,24101428&fm=26&gp=0.jpg' }], () => {
+            DocViewer.openImg([{ url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2567670815,24101428&fm=26&gp=0.jpg' }], () => {
 
             })
           }}></Button>
         <Button
-          title="打开vide"
+          title="打开video"
           onPress={() => {
-            DocViewer.openVideo({ url: 'http://172.16.17.64:8088/files/VID_20200330_224131.mp4' }, () => {
+            DocViewer.openVideo({ url: 'http://172.16.17.64:8088/bg.mp4' }, () => {
 
             })
           }}></Button>
